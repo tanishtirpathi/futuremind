@@ -1,11 +1,13 @@
-// Get the note container and buttons
+// Get the note and to-do containers and buttons
 const noteArea = document.getElementById("noteArea");
 const deleteButton = document.getElementById("deleteButton");
 const bulletButton = document.getElementById("bulletButton");
-
-// Load the saved note from localStorage on page load
+const checklistButton = document.getElementById("checklistButton");
+// Load the saved note and to-do list from localStorage on page load
 document.addEventListener("DOMContentLoaded", () => {
   noteArea.innerHTML = localStorage.getItem("notes") || "";
+  todoList.innerHTML = localStorage.getItem("todos") || "";
+  addChecklistEventListeners();
 });
 
 // Save the note to localStorage when typing
@@ -15,14 +17,14 @@ noteArea.addEventListener("input", () => {
 
 // Clear all notes when delete button is clicked
 deleteButton.addEventListener("click", () => {
-  noteArea.innerHTML = ""; // Clear the note area
-  localStorage.removeItem("notes"); // Remove notes from local storage
+  noteArea.innerHTML = "";
+  localStorage.removeItem("notes");
 });
 
 // Function to insert a bullet point
 function addBulletPoint() {
-  noteArea.focus(); // Focus on the note area
-  document.execCommand("insertHTML", false, "<br>• &nbsp;"); // Insert bullet and space
+  noteArea.focus();
+  document.execCommand("insertHTML", false, "<br>• &nbsp;");
 }
 
 // Add bullet point when button is clicked
@@ -31,7 +33,31 @@ bulletButton.addEventListener("click", addBulletPoint);
 // Add bullet point with Alt + Shift + B
 document.addEventListener("keydown", (event) => {
   if (event.altKey && event.shiftKey && event.key === "B") {
-    event.preventDefault(); // Prevent any default behavior
-    addBulletPoint(); // Call the bullet point function
+    event.preventDefault();
+    addBulletPoint();
   }
+});
+
+// Function to insert a checklist item
+function addChecklist() {
+  noteArea.focus();
+  document.execCommand(
+    "insertHTML",
+    false,
+    '<br><input type="checkbox" class="note-checkbox"> &nbsp;'
+  );
+}
+
+// Add checklist when button is clicked
+checklistButton.addEventListener("click", addChecklist);
+
+// Add checklist with Alt + Shift + C
+document.addEventListener("keydown", (event) => {
+  if (event.altKey && event.shiftKey && event.key === "C") {
+    event.preventDefault();
+    addChecklist();
+  }
+});
+noteArea.addEventListener("click", () => {
+  addChecklistEventListeners(); // Re-attach event listeners for new checklists
 });
