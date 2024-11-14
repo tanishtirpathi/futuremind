@@ -1,0 +1,81 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+  background-color: #000000;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+}
+button:hover {
+  background-color: #0056b3;
+}
+
+#deleteButton {
+  background-color: #ff4d4d;
+  text-shadow: 2px 2px 2px rgb(14, 14, 14);
+}
+
+#deleteButton:hover {
+  background-color: #ff3333;
+}
+.note-container {
+  width: 95%;
+  max-width: 90%;
+  min-height: 80vh;
+  padding: 20px;
+  background: rgba(26, 24, 24, 0.9);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  color: whitesmoke;
+  overflow-y: auto;
+  font-size: 1.1em;
+  font-family: happy monkey;
+  margin: 10px 10px;
+}
+
+.note-container:empty:before {
+  content: attr(placeholder);
+  color: #aaa;
+}
+/* button {
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  background-color: #ff4d4d;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+button:hover {
+  background-color: #ff2222;
+} */
+h1 {
+  font-family: Happy Monkey;
+  color: #24a8ff;
+  text-align: center;
+  text-shadow: 2px 2px 2px rgb(70, 70, 70);
+  font-size: 2.5rem;
+}
+
+@media (max-width: 767px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+  .note-container {
+    height: 80vh;
+    overflow: scroll;
+    font-size: 1.6em;
+  }
+}
